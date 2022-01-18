@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>quiz-me</title>
-    <script src="assets/js/script.js"></script>
+    <title>Quiz Me!</title>
 </head>
 <body class="darktheme">
-    <div class="scores"><a href="scores.html">View Scores</a></div>
-    <div class="timer">Time: <span id="timer">0</span></div>
+    <div class="scores"><a href="scores.html" target="blank">View Scores</a></div>
+    <div class="timer">Timer: <span id="time">0</span></div>
     <div class="container">
     <div class="wrapper">
         <div id="start-screen" class="start">
         <h1>Quiz Me</h1>
-        <p>Finish the quiz within the time limit!</p> 
+        <p>Finish the coding quiz within the time limit!</p> 
         <button id="start">Start</button>
         </div>
         <div id="questions" class="hide">
@@ -26,8 +25,11 @@
             <h2>This is complete.</h2>
             <p>This is your final score: <span id="final-score"></span></p>
             <p>Enter your initials:</p> <span id="initial-scale"></span></p>
+            <button id="submit">Submit</button>
         </div>
-      
-    </div>
+        <div id= "feedback" class="feedback hide"></div>
+        </div>
+    <script src="assets/js/options.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
