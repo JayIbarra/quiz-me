@@ -1,50 +1,47 @@
 //* * * *~ START OF SCRIPT ~* * * * //
-var body = document.body;
-
 // set interval //
 
 var currentQuestionIndex = 0;
 var time = questions.length * 10;
-function countDownFrom (10) {
 var timerId;
-timerId = setInterval(tick, 3000);
 
-// querySelector to select the elements //
+// DOM element //
+var timerEl = document.getElementById("time");
 
-var timerEl = document.getElementById("timer");
-
-// querySelector to select the elements //
+// DOM elements //
 // to start and submit buttons //
 
 var startBtn = document.getElementById("start");
-var submitBtn = document.querySelector("submit");
+var submitBtn = document.getElementById("submit");
 
-//
+// DOM elements //
 
-var optionsEl = document.querySelector('#options');
-var questionsEl = document.querySelector('#questions');
-var nameEl = document.querySelector('#name');
-var feedbackEl = document.querySelector('#feedback');
+var optionsEl = document.getElementById("options");
+var questionsEl = document.getElementById("questions");
+var initialsEl = document.getElementById("initials");
+var feedbackEl = document.getElementById("feedback");
 
 //* * * *~ BEGINNING OF QUIZ CODE ~* * * * //
 // to start quiz //
 
 function startQuiz() {
-    var startScreenEl = document.querySelector("start-screen");
+    var startScreenEl = document.getElementById("start-screen");
     startScreenEl.setAttribute("class", "hide");
 
     questionsEl.removeAttribute("class");
 
     // time, text context //
 
+    timerId = setInterval(Tick, 3000);
+
     timerEl.textContent = time;
 
-    getQuestions();
+    getQuestion();
 }
 
 // to get the question from the array and eventually clear it out //
 
-function getQuestions() {
+function getQuestion() {
     var currentQuestion = questions[currentQuestionIndex];
 
     var titleEl = document.getElementById("question-title");
@@ -52,19 +49,19 @@ function getQuestions() {
 
     optionsEl.innerHTML = "";
 
-// callback function for the options // 
+    // callback function for the options // 
     currentQuestion.options.forEach(function(option, i) {
-        var optionNode = document.createElement("button");
-        optionNode.setAttribute("class", "option");
-        optionNode.setAttribute("value", option);
-        optionNode.textContent = i + 1 + " . " + option;
+        var optionsNode = document.createElement("button");
+        optionsNode.setAttribute("class", "options");
+        optionsNode.setAttribute("value", options);
+        optionsNode.textContent = i + 1 + " . " + options;
 
         // event listener //
-        optionNode.onclick = questionClick;
+        optionsNode.onclick = questionClick;
 
         // option, append to the DOM //
         
-        optionsEl.appendChild(optionNode);
+        optionsEl.appendChild(optionsNode);
     });
 }
 // FOR TIMER //
@@ -73,13 +70,10 @@ function getQuestions() {
 function questionClick() {
     if (this.value !== questions[currentQuestionIndex].answer) {
         time -= 10;
-}
 
-let time; 
-if (time < 0) {
-} else {
+    if (time < 0) {
     time = 0;
-}
+    }
 
 // return content, 
 // to show wrong and correct answers 
@@ -104,7 +98,7 @@ currentQuestionIndex++;
 if (currentQuestionIndex === questions.length) {
     quizEnd();
 } else {
-    getQuestions();
+    getQuestion();
     }
 }
 
@@ -113,18 +107,17 @@ if (currentQuestionIndex === questions.length) {
 
 function quizEnd() {
     clearInterval(timerId);
-}
 
 // END GAME //
 // to show the final score place
 
-var endScreenEl = document.getElementsByClassName("end-screen");
+    var endScreenEl = document.getElementById("end-screen");
     endScreenEl.removeAttribute("class");
 
-var finalScoreEl = document.getElementsByClassName("final-score");
+    var finalScoreEl = document.getElementById("final-score");
     finalScoreEl.textContent = time;
 
-questionsEl.setAttribute("class", "hide");
+    questionsEl.setAttribute("class", "hide");
 }
 
 function Tick() {
@@ -142,13 +135,13 @@ function Tick() {
 function saveScore() {
     var initials = initialsEl.value.trim();
 
-    if (initials !=="") {
-        var Scores = 
+    if (initials !== "") {
+        var scores = 
         JSON.parse(window.localStorage.getItem("scores")) || [];
 
         var newScore = {
-            score: time;
-            initials: initials;
+            score: time,
+            initials: initials
         };
 
 // END GAME //
@@ -164,41 +157,13 @@ function saveScore() {
 // END GAME //
 // to start, to submit button
 
-function checkForEvent(event) {
+function checkForEnter(event) {
     if (event.key === "Enter") {
-        saveSscore();
+        saveScore();
     }
-}
 
 submitBtn.onclick = saveScore;
 
 startBtn.onclick = startQuiz;
 
-initialsEl.onkeyup = checkForEnter;
-
-//* * * *~ START OF QUESTIONS ~* * * * //
-
-// question #1 //
-var questions = [
-    {
-    title: "What does HTML stand for?", 
-    options: ["home tool markup langage", "hyperlinks and text markup language", "hyper total mongo language"],
-    answer: "hyper text markup language"
-    },
-
-// question #2 //
-
-    {
-    title: "Arrays in JavaScript can be used to store ____.", 
-    options: ["numbers and strings", "other arrays", "booleans", "all of the above"],
-    answer: "all of the above"
-    },
-
-// question #3 //
-
-{
-    title: "String values must be enclosed within ___ when being assigned to variables.", 
-    options: ["commas", "curly brackets", "quotes", "parentheses"],
-    answer: "quotes"
-    }
-];
+initialsEl.onkeyup = checkForEnter;}
