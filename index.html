@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Me!</title>
 </head>
-<body class="darktheme">
+<body>
     <div class="scores"><a href="scores.html" target="blank">View Scores</a></div>
     <div class="timer">Timer: <span id="time">0</span></div>
     <div class="wrapper">
@@ -21,12 +21,13 @@
         </div>
 
         <div id="end-screen" class="hide">
-            <h2>This is complete.</h2>
+            <h`>This is complete.</h2>
             <p>This is your final score: <span id="final-score"></span></p>
-            <p>Enter your initials:</p> <span id="initial-scale"></span></p>
+            <p>Enter your initials:</p> <input type="text" id="initials"/>
+            </p>
             <button id="submit">Submit</button>
         </div>
-        <div id= "feedback" class="feedback hide"></div>
+        <div id="feedback" class="feedback hide"></div>
         </div>
     <script src="assets/js/options.js"></script>
     <script src="assets/js/script.js"></script>
