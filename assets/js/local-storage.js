@@ -1,26 +1,31 @@
-// local storage for the scores 
+// to get scores from local storage for the scores 
+function printHighscores() {
 
-function printScores() {
-    var scores = JSON.parse(window.localStorage.getItem("scores")) || [];
-
-highscores.sort(function(a,b) {
-    return b - a
-});
-
-highscores.array.forEach(element => {
+    var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
     
-});
+    // high scores 
+    highscores.sort(function(a, b) {
+        return b.score - a.score;
+    });
 
-var olEl = document.getElementById("scores");
-olEl.appendChild(liTag);
-});
+    highscores.forEach(function(score) {
+
+    // to display scores list
+    var liTag = document.createElement("li");
+    liTag.textContent = score.initials + newLocal + score.score;
+
+    var olEl = document.getElementById("highscores");
+    olEl.appendChild(liTag);
+    });
 }
 
-function clearScores() {
-    window.localStorage.removeItem("scores");
-    window.localStorage.reload();
-}
+// to clear scores
+function clearHighscores() {
+    window.localStorage.removeItem("highscores");
+    window.location.reload();
+    }
 
-documenbt.getElementById("clear").onclick = clearScores;
+    document.getElementById("clear").onclick = clearHighscores;
 
-printScores();
+    // to load 
+    printHighscores();

@@ -16,7 +16,7 @@ var submitBtn = document.getElementById("submit");
 
 // DOM elements //
 
-var optionsEl = document.getElementById("options");
+var choicesEl = document.getElementById("choices");
 var questionsEl = document.getElementById("questions");
 var initialsEl = document.getElementById("initials");
 var feedbackEl = document.getElementById("feedback");
@@ -47,21 +47,21 @@ function getQuestion() {
     var titleEl = document.getElementById("question-title");
     titleEl.textContent = currentQuestion.title;
 
-    optionsEl.innerHTML = "";
+    choicesEl.innerHTML = "";
 
     // callback function for the options // 
-    currentQuestion.options.forEach(function(option, i) {
-        var optionsNode = document.createElement("button");
-        optionsNode.setAttribute("class", "options");
-        optionsNode.setAttribute("value", options);
-        optionsNode.textContent = i + 1 + " . " + options;
+    currentQuestion.choices.forEach(function(choice, i) {
+        var choiceNode = document.createElement("button");
+        choiceNode.setAttribute("class", "choice");
+        choiceNode.setAttribute("value", choice);
+        choiceNode.textContent = i + 1 + " . " + choice;
 
         // event listener //
-        optionsNode.onclick = questionClick;
+        choiceNode.onclick = questionClick;
 
         // option, append to the DOM //
         
-        optionsEl.appendChild(optionsNode);
+        choicesEl.appendChild(choiceNode);
     });
 }
 // FOR TIMER //
@@ -106,10 +106,11 @@ if (currentQuestionIndex === questions.length) {
 // to stop the timer 
 
 function quizEnd() {
+    // clear //
     clearInterval(timerId);
 
-// END GAME //
-// to show the final score place
+    // END GAME //
+    // to show the final score place
 
     var endScreenEl = document.getElementById("end-screen");
     endScreenEl.removeAttribute("class");
@@ -161,9 +162,10 @@ function checkForEnter(event) {
     if (event.key === "Enter") {
         saveScore();
     }
+}
 
 submitBtn.onclick = saveScore;
 
 startBtn.onclick = startQuiz;
 
-initialsEl.onkeyup = checkForEnter;}
+initialsEl.onkeyup = checkForEnter;

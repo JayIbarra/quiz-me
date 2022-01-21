@@ -1,0 +1,49 @@
+/* button */
+button {
+    background-color: white;
+    display: inline-block;
+    font-family: Arial;
+    font-size: 20px;
+}
+
+button:hover {
+    background-color: violet;
+}
+
+.choices button {
+    display: block;
+}
+
+/* element styles */
+
+h1 {
+    color: blue;
+    font-size: 60px;
+    Font-family: Arial;
+}
+
+p {
+    font-size: 20px;
+    font-family: Arial;
+}
+
+.start {
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
+
+input {
+    font-size: 60px;
+}
+
+ol {
+    padding-left: 0px;
+    overflow: auto;
+}
+
+
+
+/* element styles */
